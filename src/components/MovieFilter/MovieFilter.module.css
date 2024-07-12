@@ -1,0 +1,29 @@
+
+.movieFilterForm {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.movieFilterInput {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.movieFilterButton {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #08751e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.movieFilterButton:hover {
+    background-color: #0ccf33;
+}
