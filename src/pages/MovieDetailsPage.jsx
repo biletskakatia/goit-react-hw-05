@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, useRef, Suspense } from "react";
 import { useParams, NavLink, Outlet, useLocation } from "react-router-dom";
 import styles from './MovieDetailsPage.module.css'; 
 
@@ -7,6 +7,7 @@ export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
     const location = useLocation();
+    const backLinkRef = useRef(location.state);
 
     useEffect(() => {
         async function fetchMovieDetails() {
@@ -28,7 +29,7 @@ export default function MovieDetailsPage() {
 
     return (
         <div className={styles.movieDetails}>
-            <NavLink to={location.state} className={styles.goBack}>Go back</NavLink>
+            <NavLink to={backLinkRef.current} className={styles.goBack}>Go back</NavLink>
             {movie && (
                 <>
                     <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />

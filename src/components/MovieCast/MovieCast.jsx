@@ -21,7 +21,7 @@ export default function MovieCast() {
             }
         }
     fetchMovieCast()
-    })
+    },[movieId])
     return (
         <div>
             <h2>Cast</h2>

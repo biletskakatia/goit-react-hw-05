@@ -1,7 +1,7 @@
 import css from "./MovieFilter.module.css"
-export default function MovieFilter({ value, onFilter, onSearch }) {
+export default function MovieFilter({ value, onFilter}) {
     return (
-        <form  className={css.movieFilterForm} onSubmit={(e) => { e.preventDefault(); onSearch(); }}>
+        <form  className={css.movieFilterForm} onSubmit={(e) => { e.preventDefault(); }}>
             <input
                 type="text"
                 value={value}

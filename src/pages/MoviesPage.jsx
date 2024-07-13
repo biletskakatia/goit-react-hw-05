@@ -11,12 +11,6 @@ export default function MoviesPage() {
     const [query, setQuery] = useState(searchParams.get('query') ?? '');
 
     useEffect(() => {
-        const initialQuery = searchParams.get('query');
-        if (initialQuery) {
-            fetchMovies(initialQuery);
-        }
-    }, [searchParams]);
-
     const fetchMovies = async (query) => {
         const url = `https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&query=${query}`;
         const options = {
@@ -37,15 +31,18 @@ export default function MoviesPage() {
             console.error('Error fetching data:', err);
             setErrorMessage('An error occurred while fetching data.');
         }
-    };
+        };
+    const initialQuery = searchParams.get('query');
+        if (initialQuery) {
+            fetchMovies(initialQuery);
+        }
+
+    }, [searchParams]);
+
 
     const changeOwnerFilter = (newQuery) => {
         setQuery(newQuery);
-    };
-
-    const handleSearch = () => {
-        setSearchParams({ query });
-        fetchMovies(query);
+        setSearchParams({ query: newQuery });
     };
 
     return (
@@ -53,7 +50,6 @@ export default function MoviesPage() {
             <MovieFilter
                 value={query}
                 onFilter={changeOwnerFilter}
-                onSearch={handleSearch}
             />
             {errorMessage && <p>{errorMessage}</p>}
             {movies.length > 0 && <MovieList movies={movies} />}
